@@ -7,7 +7,6 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" type="text/css" href="/css/auth0-theme.min.css" />
     <link rel="stylesheet" type="text/css" href="/css/main.css" />
     <link
       rel="stylesheet"
@@ -29,16 +28,17 @@
     <link
       rel="stylesheet"
       href="https://cdn.auth0.com/js/auth0-samples-theme/1.0/css/auth0-theme.min.css"
+      crossorigin="anonymous"
     />
-    <script src="./js/GameApp.js" type="module"></script>
+    
   </head>
 
-  <body class="h-100" style="background-color: #9AC503">
+  <body class="h-100 text-white" style="background-color: #9AC503">
     <div id="app" class="h-100 d-flex flex-column">
       <div class="nav-container">
-        <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <nav class="navbar navbar-expand-md" style="background-color: rgb(42, 43, 40)">
           <div class="container">
-            <div class="navbar-brand logo"></div>
+            <div class="navbar-brand"></div>
             <button
               class="navbar-toggler"
               type="button"
@@ -54,7 +54,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                  <a href="/" class="nav-link route-link">The Snake Game</a>
+                  <a href="/" class="nav-link route-link text-white">The Snake Game</a>
                 </li>
               </ul>
               <ul class="navbar-nav d-none d-md-block">
@@ -63,7 +63,7 @@
                   <button
                     id="qsLoginBtn"
                     onclick="login()"
-                    class="btn btn-primary btn-margin auth-invisible hidden"
+                    class="btn btn-info btn-margin auth-invisible hidden"
                   >
                     Log in
                   </button>
@@ -153,28 +153,9 @@
 
       <div id="main-content" class="container mt-5 flex-grow-1">
         <div id="content-home" class="page">
-          <div class="text-center hero">
-            <img
-              class="mb-3 app-logo"
-              src="/images/SnakeLogo2.svg"
-              alt="Snake Logo"
-            />
-          </div>
           <!-- Snake Game Interface -->
-          <div class="next-steps">
-            <div class="row">
-              <div class="col-md"></div>
-              <div class="col-md-5 mb-4"></div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-5 mb-4"></div>
-              <div class="col-md"></div>
-              <div class="col-md-5 mb-4"></div>
-            </div>
-          </div>
-
           <div class="row" style="margin-top: 3em">
+            <!-- Left Pane-->
             <div class="col" style="margin-top: 6em">
               <div class="card shadow-sm p-3 mb-5 bg-dark rounded" id="scoreContainer">
                 <div class="card-title">
@@ -195,9 +176,12 @@
                 </div>
               </div>
             </div>
+            <!-- End Left Pane -->
+
+            <!-- Center Pane -->
             <div class="col">
               <div class="text-center" style="margin-bottom: 2em">
-                <img src="SnakeLogo2.svg" />
+                <img src="/images/SnakeLogo2.svg" />
               </div>
           
               <h5 class="text-center"><code style="background-color: white; border-radius: 5px; padding: 0.5em">N</code> to play,
@@ -208,7 +192,13 @@
                   style="border:1px solid #9AC503; background-color: #C4C4C4"></canvas>
               </div>
             </div>
-            <div class="col"></div>
+            <!-- End Center Pane -->
+
+            <!-- Right Pane -->
+            <div class="col">
+              
+            </div>
+            <!-- End Right Pane-->
           </div>
 
           <!-- End Snake Game Interface -->
@@ -237,18 +227,18 @@
         </div>
       </div>
 
-      <footer class="bg-light text-center p-5">
+      <!-- <footer class="bg-light text-center p-5">
         <div class="logo"></div>
         <p>
           Snake Game project provided by
           <a href="http://arpethel.com">Ryan</a>
         </p>
-      </footer>
+      </footer> -->
     </div>
 
+    <script src="js/GameApp.js" type="module"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-    <script src="js/auth0-theme.min.js"></script>
     <script src="https://cdn.auth0.com/js/auth0-spa-js/1.2/auth0-spa-js.production.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
     <script src="js/ui.js"></script>
