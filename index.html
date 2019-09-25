@@ -2,7 +2,7 @@
 <html class="h-100" lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>SPA SDK Sample</title>
+    <title>The Snake Game</title>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -30,9 +30,10 @@
       rel="stylesheet"
       href="https://cdn.auth0.com/js/auth0-samples-theme/1.0/css/auth0-theme.min.css"
     />
+    <script src="./js/GameApp.js" type="module"></script>
   </head>
 
-  <body class="h-100">
+  <body class="h-100" style="background-color: #9AC503">
     <div id="app" class="h-100 d-flex flex-column">
       <div class="nav-container">
         <nav class="navbar navbar-expand-md navbar-light bg-light">
@@ -53,7 +54,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                  <a href="/" class="nav-link route-link">Home</a>
+                  <a href="/" class="nav-link route-link">The Snake Game</a>
                 </li>
               </ul>
               <ul class="navbar-nav d-none d-md-block">
@@ -155,87 +156,62 @@
           <div class="text-center hero">
             <img
               class="mb-3 app-logo"
-              src="/images/logo.png"
-              alt="JavaScript logo"
-              width="75"
+              src="/images/SnakeLogo2.svg"
+              alt="Snake Logo"
             />
-            <h1 class="mb-4">JavaScript Sample Project</h1>
-
-            <p class="lead">
-              This is a sample application that demonstrates an authentication
-              flow for an SPA, using plain JavaScript
-            </p>
           </div>
-
+          <!-- Snake Game Interface -->
           <div class="next-steps">
-            <h2 class="my-5 text-center">What can I do next?</h2>
-
             <div class="row">
-              <div class="col-md-5 mb-4">
-                <h6 class="mb-3">
-                  <a href="https://auth0.com/docs/connections">
-                    <i class="fas fa-link"></i> Configure other identity
-                    providers
-                  </a>
-                </h6>
-                <p>
-                  Auth0 supports social providers as Facebook, Twitter,
-                  Instagram and 100+, Enterprise providers as Microsoft Office
-                  365, Google Apps, Azure, and more. You can also use any OAuth2
-                  Authorization Server.
-                </p>
-              </div>
-
               <div class="col-md"></div>
-
-              <div class="col-md-5 mb-4">
-                <h6 class="mb-3">
-                  <a href="https://auth0.com/docs/multifactor-authentication">
-                    <i class="fas fa-link"></i> Enable Multifactor
-                    Authentication
-                  </a>
-                </h6>
-                <p>
-                  Add an extra layer of security by enabling Multi-factor
-                  Authentication, requiring your users to provide more than one
-                  piece of identifying information. Push notifications,
-                  authenticator apps, SMS, and DUO Security are supported.
-                </p>
-              </div>
+              <div class="col-md-5 mb-4"></div>
             </div>
 
             <div class="row">
-              <div class="col-md-5 mb-4">
-                <h6 class="mb-3">
-                  <a href="https://auth0.com/docs/anomaly-detection">
-                    <i class="fas fa-link"></i> Anomaly Detection
-                  </a>
-                </h6>
-                <p>
-                  Auth0 can detect anomalies and stop malicious attempts to
-                  access your application. Anomaly detection can alert you and
-                  your users of suspicious activity, as well as block further
-                  login attempts.
-                </p>
-              </div>
-
+              <div class="col-md-5 mb-4"></div>
               <div class="col-md"></div>
-
-              <div class="col-md-5 mb-4">
-                <h6 class="mb-3">
-                  <a href="https://auth0.com/docs/rules">
-                    <i class="fas fa-link"></i> Learn About Rules
-                  </a>
-                </h6>
-                <p>
-                  Rules are JavaScript functions that execute when a user
-                  authenticates to your application. They run once the
-                  authentication process is complete, and you can use them to
-                  customize and extend Auth0's capabilities.
-                </p>
-              </div>
+              <div class="col-md-5 mb-4"></div>
             </div>
           </div>
+
+          <div class="row" style="margin-top: 3em">
+            <div class="col" style="margin-top: 6em">
+              <div class="card shadow-sm p-3 mb-5 bg-dark rounded" id="scoreContainer">
+                <div class="card-title">
+                  Score: 0
+                </div>
+              </div>
+              <div class="card shadow-sm p-3 mb-5 bg-dark rounded">
+                <div class="card-title">
+                  <p class="text-center">Use the arrow keys to change the snake's direction</p>
+                  <h4 class="text-center" style="margin: 1em"><code
+                      style="background-color: white; border-radius: 5px; padding: 0.5em">↑</code></h4>
+                  <h4 class="text-center" style="margin: 1em">
+                    <code style="background-color: white; border-radius: 5px; padding: 0.5em">←</code>
+                    <code style="background-color: white; border-radius: 5px; padding: 0.5em">→</code>
+                  </h4>
+                  <h4 class="text-center" style="margin: 1em"><code
+                      style="background-color: white; border-radius: 5px; padding: 0.5em">↓</code></h4>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="text-center" style="margin-bottom: 2em">
+                <img src="SnakeLogo2.svg" />
+              </div>
+          
+              <h5 class="text-center"><code style="background-color: white; border-radius: 5px; padding: 0.5em">N</code> to play,
+                <code style="background-color: white; border-radius: 5px; padding: 0.5em">Spacebar</code> to pause</h5>
+          
+              <div class="shadow p-1 mb-5 rounded bg-dark" style="margin-top: 3em" id="gameContainer">
+                <canvas id="gameCanvas" width="500" height="300"
+                  style="border:1px solid #9AC503; background-color: #C4C4C4"></canvas>
+              </div>
+            </div>
+            <div class="col"></div>
+          </div>
+
+          <!-- End Snake Game Interface -->
         </div>
 
         <div class="page" id="content-profile">
@@ -264,8 +240,8 @@
       <footer class="bg-light text-center p-5">
         <div class="logo"></div>
         <p>
-          Sample project provided by
-          <a href="https://auth0.com">Auth0</a>
+          Snake Game project provided by
+          <a href="http://arpethel.com">Ryan</a>
         </p>
       </footer>
     </div>
